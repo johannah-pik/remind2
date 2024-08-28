@@ -944,15 +944,10 @@ reportPrices <- function(gdx, output=NULL, regionSubsetList=NULL,
                )
 
   # transport-specific mappings depending on realization
-  if (module2realisation["transport",2] == "complex") {
-    int2ext <- c(int2ext,
-                 "Price|Final Energy|Transport|Liquids|HDV (US$2005/GJ)"       = "FE|Transport|non-LDV|Liquids (EJ/yr)",
-                 "Price|Final Energy|Transport|Liquids|LDV (US$2005/GJ)"       = "FE|Transport|LDV|Liquids (EJ/yr)")
-  } else if (module2realisation["transport",2] == "edge_esm") {
-    int2ext <- c(int2ext,
-                 "Price|Final Energy|Transport|Liquids|HDV (US$2005/GJ)"       = "FE|Transport|Diesel Liquids (EJ/yr)",
-                 "Price|Final Energy|Transport|Liquids|LDV (US$2005/GJ)"       = "FE|Transport|Pass|Liquids (EJ/yr)")
-  }
+  int2ext <- c(int2ext,
+               "Price|Final Energy|Transport|Liquids|HDV (US$2005/GJ)"       = "FE|Transport|Liquids|HDV (EJ/yr)",
+               "Price|Final Energy|Transport|Liquids|LDV (US$2005/GJ)"        = "FE|Transport|Pass|LDV (EJ/yr)")
+  
 
   ## add weights definition for region aggregation for FE prices that were added automatically
   if(length(pm_FEPrice_by_FE) > 0) {
